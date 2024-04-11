@@ -1,0 +1,50 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #282c34; /* Dark theme */
+    color: white;
+}
+
+.header .logo a {
+    color: #fd4455; /* Valorant red */
+    text-decoration: none;
+    font-size: 1.5rem;
+}
+
+.navigation ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.navigation li {
+    margin: 0 10px;
+}
+
+.navigation a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.navigation a:hover {
+    color: #fd4455; /* Hover effect */
+}
+
+/* Add responsive adjustments as needed */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+    }
+    .navigation ul {
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+    }
+    .navigation li {
+        margin: 5px 0;
+    }
+}

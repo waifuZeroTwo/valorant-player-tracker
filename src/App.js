@@ -1,48 +1,51 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+import Header from './Components/Header';
+import Footer from './Components/Footer';
+import Home from './Pages/Home';
+import Login from './Pages/Login';
+import Leaderboard from './Pages/Leaderboard';
+import ValorantPremier from './Pages/ValorantPremier';
+import PlayerStats from './Components/PlayerStats';
+import Loader from './Components/Loader';
+import ErrorComponent from './Components/ErrorComponent';
+import { fetchPlayerStats } from './API'; // Adjust the path as necessary
 
 function App() {
-  const [playerName, setPlayerName] = useState('');
-  const [playerStats, setPlayerStats] = useState(null);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [playerData, setPlayerData] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
 
-  // Function to handle search submissions
-  const handleSearch = async (name) => {
-    setPlayerName(name);
-  };
+    const handleSearch = async (searchTerm) => {
+        setLoading(true);
+        setError(''); // Clear previous errors
+        try {
+            const data = await fetchPlayerStats(searchTerm);
+            setPlayerData(data); // Assuming you store fetched data here
+            setLoading(false);
+        } catch (error) {
+            setError('Failed to fetch player data'); // Set error message
+            setLoading(false);
+        }
+    };
 
-  return (
-      <div className="App">
-        <header className="App-header">
-          <h1>Valorant Stat Tracker</h1>
-        </header>
-        <main>
-          {}
-          <div>
-            {}
-            <input
-                type="text"
-                placeholder="Enter Player Name"
-                value={playerName}
-                onChange={(e) => setPlayerName(e.target.value)}
-            />
-            <button onClick={() => handleSearch(playerName)}>Search</button>
-          </div>
-          <div>
-            {}
-            {playerStats ? (
-                <div>
-                  {}
-                  <p>Player Stats for: {playerName}</p>
-                  {}
-                </div>
-            ) : (
-                <p>Enter a player name to see stats.</p>
-            )}
-          </div>
-        </main>
-      </div>
-  );
+    return (
+        <Router>
+            <div className="App">
+                <Header onSearch={handleSearch} searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+                <Routes>
+                    <Route path="/" element={<Home />} exact />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/leaderboard" element={<Leaderboard />} />
+                    <Route path="/valorant-premier" element={<ValorantPremier />} />
+                    {/* Define more routes as needed */}
+                </Routes>
+                <Footer />
+            </div>
+        </Router>
+    );
 }
 
 export default App;

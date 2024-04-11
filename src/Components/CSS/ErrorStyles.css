@@ -1,0 +1,17 @@
+.error-message {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #442222; /* Darker red background for a subtle look */
+    border-left: 5px solid #ff4545; /* Brighter red border for emphasis */
+    color: #ffdddd; /* Soft red text color for readability on a dark background */
+    text-align: center;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: bold;
+    width: 80%;
+    max-width: 600px;
+    box-shadow: 0 2px 8px rgba(255, 69, 69, 0.2); /* Subtle shadow with a hint of red */
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
