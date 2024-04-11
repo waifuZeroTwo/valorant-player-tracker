@@ -1,22 +1,28 @@
-.App {
-  text-align: center;
-  background-color: #0f1923;
-  color: #fff;
+/* Base Layout */
+body, html {
+  margin: 0;
+  padding: 0;
   font-family: 'Poppins', sans-serif;
+  background-color: #0f1923;
+  color: #ffffff;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.App {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .App-header {
   background-color: #161b22;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  padding: 20px 0;
+  margin-bottom: 20px;
+}
+
+/* Typography */
+h1, p {
+  margin: 10px 0;
 }
 
 .App-link {
@@ -25,31 +31,56 @@
   font-weight: bold;
 }
 
-
-button {
-  background-color: #fd4455;
-  border: none;
+/* Form Elements */
+input[type="text"], button {
+  font-size: 16px;
+  padding: 10px;
   border-radius: 4px;
-  padding: 10px 20px;
-  color: white;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-button:hover {
-  background-color: #ff5768;
+  border: 2px solid #fd4455;
+  background: transparent;
+  color: #fff;
+  outline: none; /* Removes default focus outline */
 }
 
 input[type="text"] {
-  border: 2px solid #fd4455;
-  border-radius: 4px;
-  padding: 10px;
-  color: white;
-  background-color: transparent;
   margin-right: 10px;
 }
 
 input[type="text"]::placeholder {
   color: #ddd;
+}
+
+input[type="text"]:focus {
+  border-color: #ff5768; /* Changes border color on focus */
+  box-shadow: 0 0 8px #fd4455; /* Adds a glow effect to highlight focus */
+}
+
+button {
+  background-color: #fd4455;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  box-shadow: 0 4px black; /* Adds depth to the button */
+  position: relative; /* Required for the press-down effect */
+}
+
+button:hover {
+  background-color: #ff5768;
+  transform: translateY(-2px); /* Lift effect */
+  box-shadow: 0 6px black; /* Increases shadow to emphasize the lift */
+}
+
+button:active {
+  transform: translateY(1px); /* Mimics a press-down effect */
+  box-shadow: 0 2px #bb2e3f; /* Reduces shadow to give a feeling of being pressed */
+}
+
+/* Misc - Enhancements and subtle animations */
+.App-logo {
+  height: 40vmin;
+  animation: logo-fade-in 2s ease-in-out forwards;
+}
+
+@keyframes logo-fade-in {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
