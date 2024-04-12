@@ -7,11 +7,10 @@ import Home from './Pages/Home';
 import Login from './Pages/Login';
 import Leaderboard from './Pages/Leaderboard';
 import ValorantPremier from './Pages/ValorantPremier';
-import Register from './Pages/Register';
 import PlayerStats from './Components/PlayerStats';
 import Loader from './Components/Loader';
 import ErrorComponent from './Components/ErrorComponent';
-import { fetchPlayerStats } from './API'; // Adjust the path as necessary
+import { fetchPlayerStats } from './API'; // Ensure the path is correct
 
 function App() {
     const [searchTerm, setSearchTerm] = useState('');
@@ -37,11 +36,10 @@ function App() {
             <div className="App">
                 <Header onSearch={handleSearch} searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
                 <Routes>
-                    <Route path="/" element={<Home />} exact />
+                    <Route path="/" element={<Home />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/leaderboard" element={<Leaderboard />} />
                     <Route path="/valorant-premier" element={<ValorantPremier />} />
-                    <Route path="/Register" element={<Register />} />
                 </Routes>
                 <Footer />
             </div>

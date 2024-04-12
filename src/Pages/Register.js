@@ -1,9 +1,9 @@
-// src/Pages/Register.js
 import React, { useState } from 'react';
 
 function Register() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('');  // Add state for email
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -11,12 +11,13 @@ function Register() {
             const response = await fetch('http://localhost:5000/api/user/register', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username, password })
+                body: JSON.stringify({ username, password, email })  // Include email in the payload
             });
             const data = await response.json();
             if (response.ok) {
                 console.log('Success:', data);
                 // Redirect user or show success message
+                // Possible redirection: window.location = '/login';
             } else {
                 throw new Error(data.message); // Handling backend errors
             }
@@ -36,6 +37,10 @@ function Register() {
                 <label>
                     Password:
                     <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                </label>
+                <label>
+                    Email:
+                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
                 </label>
                 <button type="submit">Register</button>
             </form>

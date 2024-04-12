@@ -1,7 +1,9 @@
 import axios from 'axios';
 
-const API_KEY = 'YOUR_API_KEY_HERE'; // Replace with your actual API key
-const BASE_URL = 'https://api.riotgames.com/valorant/'; // This is a placeholder URL
+// Assuming your Riot API Key is stored as an environment variable for security reasons
+// Make sure to include your API key in your environment configuration but never in your code directly
+const API_KEY = process.env.RIOT_API_KEY;  // Use REACT_APP_ prefix for create-react-app environments
+const BASE_URL = 'https://api.riotgames.com/valorant/'; // Update this if there's a more specific base URL
 
 // Axios instance for Riot Games API
 const riotApi = axios.create({
@@ -15,6 +17,6 @@ export const fetchPlayerStats = async (playerId) => {
         return response.data;
     } catch (error) {
         console.error('Error fetching player stats:', error);
-        throw error; // Rethrow or handle as needed
+        throw error; // It's usually better to handle these errors in the component where the function is called
     }
 };
