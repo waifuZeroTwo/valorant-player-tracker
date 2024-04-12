@@ -1,0 +1,63 @@
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;  /* Ensures it takes up at least the full height of the viewport */
+    background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%); /* Refined dark gradient background */
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+}
+
+.login-form {
+    width: 90%;  /* Makes the form responsive */
+    max-width: 350px;  /* Limits the form width on larger screens */
+    padding: 30px;  /* Increases padding for better spacing inside the form */
+    background-color: rgba(0, 0, 0, 0.85); /* Slightly more transparency */
+    border-radius: 10px;  /* Smooths the corners for a softer look */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5); /* Enhances the shadow for a 3D effect */
+}
+
+.input-group {
+    margin-bottom: 15px;  /* Adjusts spacing between input fields */
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;  /* Increases padding for a better touch area and visual appeal */
+    border: 2px solid #ff6347; /* Keeps the neon-like border color */
+    background: none;
+    color: white;
+    border-radius: 5px;  /* Softens the border radius */
+    font-size: 1rem;  /* Ensures text size is legible */
+}
+
+.login-button {
+    width: 100%;  /* Ensures the button width matches the input fields */
+    padding: 12px;  /* Adjusts padding for better clickability and proportion */
+    margin-top: 10px;  /* Adds top margin for spacing from the last input field */
+    background-color: #ff6347;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.login-button:hover {
+    background-color: #ff2e2e;
+    transform: translateY(-2px);
+}
+
+.login-button:active {
+    transform: translateY(1px);
+    background-color: #e62600;
+}
