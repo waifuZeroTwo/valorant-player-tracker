@@ -1,0 +1,87 @@
+[
+  {
+    "playerId": "123456",
+    "nickname": "ValorantPro",
+    "rank": "Diamond 1",
+    "matchHistory": [
+      {
+        "matchId": "game123",
+        "result": "Win",
+        "score": "13-10",
+        "kills": 20,
+        "deaths": 5,
+        "assists": 10
+      },
+      {
+        "matchId": "game124",
+        "result": "Loss",
+        "score": "8-13",
+        "kills": 18,
+        "deaths": 9,
+        "assists": 6
+      }
+    ],
+    "topMaps": [
+      {"mapName": "Bind", "winPercentage": 70},
+      {"mapName": "Haven", "winPercentage": 65},
+      {"mapName": "Split", "winPercentage": 60},
+      {"mapName": "Ascent", "winPercentage": 55},
+      {"mapName": "Icebox", "winPercentage": 50}
+    ],
+    "bottomMaps": [
+      {"mapName": "Breeze", "winPercentage": 45},
+      {"mapName": "Fracture", "winPercentage": 40},
+      {"mapName": "Pearl", "winPercentage": 35},
+      {"mapName": "Fool's Gambit", "winPercentage": 30},
+      {"mapName": "Lotus", "winPercentage": 25}
+    ],
+    "topAgents": [
+      {"agentName": "Jett", "winPercentage": 75},
+      {"agentName": "Reyna", "winPercentage": 70},
+      {"agentName": "Sova", "winPercentage": 65},
+      {"agentName": "Omen", "winPercentage": 60},
+      {"agentName": "Phoenix", "winPercentage": 55}
+    ],
+    "mostUsedWeapons": [
+      {"weaponName": "Vandal", "timesUsed": 150},
+      {"weaponName": "Phantom", "timesUsed": 125},
+      {"weaponName": "Operator", "timesUsed": 100},
+      {"weaponName": "Sheriff", "timesUsed": 75},
+      {"weaponName": "Spectre", "timesUsed": 50}
+    ]
+  },
+  {
+    "playerId": "789012",
+    "nickname": "AceGamer",
+    "rank": "Platinum 3",
+    "matchHistory": [],
+    "topMaps": [
+      {"mapName": "Ascent", "winPercentage": 65},
+      {"mapName": "Bind", "winPercentage": 60},
+      {"mapName": "Icebox", "winPercentage": 55},
+      {"mapName": "Split", "winPercentage": 50},
+      {"mapName": "Haven", "winPercentage": 45}
+    ],
+    "bottomMaps": [
+      {"mapName": "Pearl", "winPercentage": 40},
+      {"mapName": "Breeze", "winPercentage": 35},
+      {"mapName": "Fracture", "winPercentage": 30},
+      {"mapName": "Lotus", "winPercentage": 25},
+      {"mapName": "Fool's Gambit", "winPercentage": 20}
+    ],
+    "topAgents": [
+      {"agentName": "Cypher", "winPercentage": 70},
+      {"agentName": "Killjoy", "winPercentage": 65},
+      {"agentName": "Brimstone", "winPercentage": 60},
+      {"agentName": "Sage", "winPercentage": 55},
+      {"agentName": "Breach", "winPercentage": 50}
+    ],
+    "mostUsedWeapons": [
+      {"weaponName": "Phantom", "timesUsed": 140},
+      {"weaponName": "Vandal", "timesUsed": 115},
+      {"weaponName": "Operator", "timesUsed": 90},
+      {"weaponName": "Ghost", "timesUsed": 65},
+      {"weaponName": "Guardian", "timesUsed": 40}
+    ]
+  }
+]

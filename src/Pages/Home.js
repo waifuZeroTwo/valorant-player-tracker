@@ -1,12 +1,23 @@
 import React from 'react';
+import './CSS/ErrorStyles.css';
 
-function Home() {
+const Home = ({ playerData, loading, error }) => {
     return (
         <div>
-            <h1>Welcome to the Valorant Stat Tracker</h1>
-            <p>Track your progress and compare your stats with others!</p>
+            {loading && <p>Loading...</p>}
+            {error && <div className="error-message">{error}</div>}
+            {playerData && (
+                <div>
+                    <h1>{playerData.nickname}</h1>
+                    <p>Rank: {playerData.rank}</p>
+                    {/* Render more player details here */}
+                </div>
+            )}
+            {!loading && !playerData && !error && (
+                <p>Enter a player ID in the search bar to view stats.</p>
+            )}
         </div>
     );
-}
+};
 
 export default Home;

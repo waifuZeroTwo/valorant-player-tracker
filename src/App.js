@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Header from './Components/Header';
 import Footer from './Components/Footer';
@@ -7,10 +7,7 @@ import Home from './Pages/Home';
 import Login from './Pages/Login';
 import Leaderboard from './Pages/Leaderboard';
 import ValorantPremier from './Pages/ValorantPremier';
-import PlayerStats from './Components/PlayerStats';
-import Loader from './Components/Loader';
-import ErrorComponent from './Components/ErrorComponent';
-import { fetchPlayerStats } from './API'; // Ensure the path is correct
+import { fetchMockPlayerStats } from './utils/mockApi'; // Ensure the path is correct
 
 function App() {
     const [searchTerm, setSearchTerm] = useState('');
@@ -19,14 +16,23 @@ function App() {
     const [error, setError] = useState('');
 
     const handleSearch = async (searchTerm) => {
+        if (!searchTerm) {
+            setError('Please enter a valid player ID');
+            return;
+        }
+        setError('');
         setLoading(true);
-        setError(''); // Clear previous errors
         try {
-            const data = await fetchPlayerStats(searchTerm);
-            setPlayerData(data); // Assuming you store fetched data here
-            setLoading(false);
-        } catch (error) {
-            setError('Failed to fetch player data'); // Set error message
+            const data = await fetchMockPlayerStats(searchTerm);
+            if (data) {
+                setPlayerData(data);
+                setLoading(false);
+            } else {
+                throw new Error("Player not found");  // Throwing an error if no data is found
+            }
+        } catch (err) {
+            setError(err.message || 'Failed to fetch player data');
+            setPlayerData(null);
             setLoading(false);
         }
     };
@@ -36,7 +42,7 @@ function App() {
             <div className="App">
                 <Header onSearch={handleSearch} searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
                 <Routes>
-                    <Route path="/" element={<Home />} />
+                    <Route path="/" element={<Home playerData={playerData} loading={loading} error={error} />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/leaderboard" element={<Leaderboard />} />
                     <Route path="/valorant-premier" element={<ValorantPremier />} />
