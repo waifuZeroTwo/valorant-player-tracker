@@ -7,6 +7,7 @@ import Home from './Pages/Home';
 import Login from './Pages/Login';
 import Leaderboard from './Pages/Leaderboard';
 import ValorantPremier from './Pages/ValorantPremier';
+import Register from './Pages/Register';
 import PlayerStats from './Components/PlayerStats';
 import Loader from './Components/Loader';
 import ErrorComponent from './Components/ErrorComponent';
@@ -40,7 +41,7 @@ function App() {
                     <Route path="/login" element={<Login />} />
                     <Route path="/leaderboard" element={<Leaderboard />} />
                     <Route path="/valorant-premier" element={<ValorantPremier />} />
-                    {/* Define more routes as needed */}
+                    <Route path="/Register" element={<Register />} />
                 </Routes>
                 <Footer />
             </div>

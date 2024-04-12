@@ -15,6 +15,7 @@ const Header = ({ onSearch, searchTerm, setSearchTerm }) => {
                     <li><a href="/leaderboard">Leaderboard</a></li>
                     <li><a href="/valorant-premier">Valorant Premier</a></li>
                     <li><a href="/login">Login</a></li>
+                    <li><a href="/Register">Register</a></li>
                 </ul>
             </nav>
             <SearchBar onSearch={onSearch} searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
