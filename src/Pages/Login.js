@@ -6,35 +6,23 @@ function Login() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log('Login Attempt:', username, password);
-        // Here, you would handle the login logic or integrate with authentication services
+        console.log('Login Attempt with username:', username, 'and password:', password);
+        // Here you would handle the login logic or integration with an authentication service
     };
 
     return (
-        <div className="login-container">
-            <h2>Login</h2>
+        <div>
+            <h1>Login</h1>
             <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="username">Username:</label>
-                    <input
-                        type="text"
-                        id="username"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                        required
-                    />
-                </div>
-                <div>
-                    <label htmlFor="password">Password:</label>
-                    <input
-                        type="password"
-                        id="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-                </div>
-                <button type="submit">Login</button>
+                <label>
+                    Username:
+                    <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+                </label>
+                <label>
+                    Password:
+                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                </label>
+                <button type="submit">Log In</button>
             </form>
         </div>
     );
