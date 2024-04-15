@@ -1,21 +1,35 @@
-// Header.js
-import React from 'react';
-import SearchBar from './SearchBar'; // Assuming SearchBar is a separate component
-import './CSS/HeaderStyles.css'; // Ensure you have corresponding CSS for styling
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import SearchBar from './SearchBar';
+import './CSS/HeaderStyles.css';
+import './CSS/MobileCSS/HeaderStyles_Mobile.css';
 
 const Header = ({ onSearch, searchTerm, setSearchTerm }) => {
+    const [isNavVisible, setIsNavVisible] = useState(false);
+    const navigate = useNavigate();
+
+    const handleNavClick = (path) => {
+        navigate(path);
+        setIsNavVisible(false);  // Close the navigation menu
+    };
+
     return (
         <header className="header">
             <div className="logo">
-                <a href="/">Valorant Stat Tracker</a>
+                <a href="/" onClick={(e) => { e.preventDefault(); handleNavClick('/'); }}>
+                    Valorant Stat Tracker
+                </a>
             </div>
-            <nav className="navigation">
+            <button className="menu-toggle" onClick={() => setIsNavVisible(!isNavVisible)}>
+                ☰
+            </button>
+            <nav className={`navigation ${isNavVisible ? 'visible' : ''}`}>
                 <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/leaderboard">Leaderboard</a></li>
-                    <li><a href="/valorant-premier">Valorant Premier</a></li>
-                    <li><a href="/login">Login</a></li>
-                    <li><a href="/Register">Register</a></li>
+                    <li><button onClick={() => handleNavClick('/')}>Home</button></li>
+                    <li><button onClick={() => handleNavClick('/leaderboard')}>Leaderboard</button></li>
+                    <li><button onClick={() => handleNavClick('/valorant-premier')}>Valorant Premier</button></li>
+                    <li><button onClick={() => handleNavClick('/login')}>Login</button></li>
+                    <li><button onClick={() => handleNavClick('/register')}>Register</button></li>
                 </ul>
             </nav>
             <SearchBar onSearch={onSearch} searchTerm={searchTerm} setSearchTerm={setSearchTerm} />

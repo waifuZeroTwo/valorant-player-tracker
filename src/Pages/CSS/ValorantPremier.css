@@ -1,0 +1,64 @@
+.valorant-premier-container {
+    color: #fff;
+    background-color: #0f1923; /* A dark theme similar to Valorant's UI */
+    padding: 20px;
+    text-align: center;
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera, and Edge */
+}
+
+.valorant-premier-container h1,
+.valorant-premier-container h2 {
+    color: #ff4654; /* Valorant's signature red color */
+}
+
+.valorant-premier-container p {
+    color: #c7d5e0; /* A lighter shade for text to ensure readability */
+}
+
+.events-list .event {
+    background-color: #16202d; /* Slightly lighter than the page background for contrast */
+    margin-bottom: 15px;
+    padding: 10px;
+    border-left: 5px solid #ff4654; /* A stylistic choice for a splash of color */
+    transition: all 0.3s ease; /* Transition for smooth color and transform changes */
+    cursor: pointer; /* Change cursor to signify it's clickable */
+}
+
+.events-list .event:hover {
+    background-color: #1c2834; /* Slightly highlight the event on hover */
+    transform: translateY(-2px); /* Move up slightly on hover */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5); /* Shadow for 3D lift effect */
+}
+
+.events-list .event:active {
+    transform: translateY(1px); /* Move down slightly on click to simulate button press */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5); /* Reduce shadow to simulate button being pressed */
+}
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7); /* Dark background for the overlay */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000; /* Ensure it's above everything else */
+}
+
+.modal {
+    background-color: #1a1e24;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    width: 500px; /* Set a fixed width for the modal or make it responsive */
+    z-index: 1001; /* Above the overlay */
+}
+
+.modal button {
+    /* Style your close button here */
+}

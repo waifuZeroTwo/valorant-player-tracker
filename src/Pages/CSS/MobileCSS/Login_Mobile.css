@@ -1,0 +1,39 @@
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;  /* Ensures it takes up at least the full height of the viewport */
+    background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%); /* Refined dark gradient background */
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+}
+
+@media (max-width: 375px) {
+    .login-container {
+        padding: 20px; /* Adds padding to avoid touching the edges of the screen */
+    }
+
+    .login-button {
+        width: 100%;  /* Full width to utilize the small screen space */
+        padding: 12px;  /* Slightly reduced padding for better proportion on small screens */
+        margin-top: 20px;  /* Keeps consistent spacing */
+        background-color: #ff6347; /* Maintains vibrant color */
+        color: white;
+        border: none;
+        border-radius: 10px;  /* Keeps rounded corners for a modern look */
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Slightly lighter shadow for subtlety on small devices */
+        transition: background-color 0.3s, transform 0.2s; /* Ensures smooth transitions */
+    }
+
+    .login-button:hover {
+        background-color: #ff2e2e; /* Brighter red on hover for interactive feedback */
+        transform: translateY(-2px); /* Slightly reduced lift effect to maintain usability */
+    }
+
+    .login-button:active {
+        transform: translateY(1px); /* Mimics a button press effectively */
+        background-color: #e62600; /* Deeper color for pressed state */
+    }
+}

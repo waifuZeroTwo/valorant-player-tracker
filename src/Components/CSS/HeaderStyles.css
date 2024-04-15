@@ -3,38 +3,50 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background-color: #282c34; /* Dark theme */
-    color: white;
+    background-color: #0f0f0f; /* Even darker background for a sleek look */
+    color: white; /* Ensure text color is white for all header content */
 }
 
-.header .logo a {
-    color: #fd4455; /* Valorant red */
+.logo a {
     text-decoration: none;
+    color: #ff4654; /* Strong red, typical for Valorant */
+    font-weight: bold;
     font-size: 1.5rem;
 }
 
 .navigation ul {
     list-style: none;
-    display: flex;
-    margin: 0;
     padding: 0;
+    display: flex;
 }
 
 .navigation li {
     margin: 0 10px;
 }
 
-.navigation a {
-    color: white;
-    text-decoration: none;
-    transition: color 0.3s;
+.navigation button {
+    background: none;
+    border: 2px solid #ff4654; /* Add a border to emphasize the button with Valorant red */
+    color: #ffffff; /* White text color for contrast */
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 8px 16px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    outline: none;
 }
 
-.navigation a:hover {
-    color: #fd4455; /* Hover effect */
+.navigation button:hover, .navigation button:focus {
+    background-color: #ff4654; /* Red background on hover/focus for a vivid effect */
+    color: #0f0f0f; /* Dark text for contrast */
 }
 
-/* Add responsive adjustments as needed */
+.navigation button:active {
+    transform: translateY(2px); /* Subtle button press effect */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5); /* Add shadow for depth */
+}
+
+/* Optional: Responsive adjustments for mobile views */
 @media (max-width: 768px) {
     .header {
         flex-direction: column;
@@ -42,9 +54,9 @@
     .navigation ul {
         flex-direction: column;
         width: 100%;
-        text-align: center;
     }
     .navigation li {
-        margin: 5px 0;
+        width: 100%;
+        text-align: center;
     }
 }

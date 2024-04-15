@@ -1,0 +1,53 @@
+/* Register.css - Specific styles for the Register component */
+
+@media (max-width: 375px) {
+    div {
+        padding: 10px;
+        margin: auto;
+        width: 100%;
+    }
+
+    h2 {
+        text-align: center;
+        color: #2c3e50; /* Dark blue color for a professional look */
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    label {
+        margin-bottom: 15px; /* Space out the form elements */
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="email"] {
+        width: 100%; /* Full width to maximize space */
+        padding: 8px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    button {
+        width: 100%;
+        padding: 10px;
+        background-color: #3498db; /* Sky blue color for button */
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    button:hover {
+        background-color: #2980b9; /* Darker blue on hover for button */
+    }
+}

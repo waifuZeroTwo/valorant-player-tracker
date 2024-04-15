@@ -1,0 +1,69 @@
+.header .menu-toggle {
+    display: none;  /* Hide by default, visible only in mobile */
+}
+
+.header nav {
+    position: fixed;
+    top: 0;
+    left: -100%; /* Start off-screen to the left */
+    width: 100%;
+    height: 100vh;
+    background: #0f0f0f;
+    opacity: 0; /* Start fully transparent */
+    visibility: hidden; /* Start as not visible */
+    transition: transform 0.5s ease, opacity 0.5s ease, visibility 0.5s ease;
+    z-index: 1000;
+    transform: translateX(0);
+}
+
+.header nav.visible {
+    transform: translateX(100%);
+    opacity: 1; /* Fully visible */
+    visibility: visible; /* Make visible */
+}
+
+@media (max-width: 375px) {
+    .header .menu-toggle {
+        display: block;  /* Show toggle button in mobile view */
+    }
+
+    .navigation ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
+
+    .navigation li {
+        margin-bottom: 20px;  /* Space out the links vertically */
+    }
+}
+
+/* Desktop styles reset */
+@media (min-width: 376px) {
+    .header .menu-toggle {
+        display: none;
+    }
+
+    .header nav {
+        position: relative;
+        width: auto;
+        height: auto;
+        background: transparent;
+        transform: none; /* Reset transformation */
+        display: flex;  /* Flex layout for desktop */
+        left: 0;  /* Reset left position */
+    }
+
+    .navigation ul {
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        height: auto;
+    }
+
+    .navigation li {
+        margin: 0 10px;
+    }
+}

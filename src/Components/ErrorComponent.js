@@ -1,5 +1,5 @@
 import React from 'react';
-import '../Pages/CSS/ErrorStyles.css'; // Adjust the relative path as necessary
+import '../Pages/CSS/HomePage.css'; // Adjust the relative path as necessary
 
 const ErrorComponent = ({ message }) => {
     return (

@@ -1,0 +1,37 @@
+@media (max-width: 375px) {
+    .leaderboard-container {
+        padding: 10px;
+        margin: 10px;
+        max-width: 100%;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .filters {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    table {
+        width: 100%;
+        display: block;
+        overflow-x: auto; /* Allows table to scroll horizontally */
+    }
+
+    th, td {
+        padding: 8px;
+        min-width: 60px; /* Ensure content does not overlap */
+        white-space: nowrap; /* Prevents text from wrapping */
+    }
+
+    th {
+        font-size: 14px; /* Slightly smaller font size for headers */
+    }
+
+    td {
+        font-size: 13px; /* Slightly smaller font size for data */
+    }
+
+    select {
+        width: 100%;
+    }
+}
