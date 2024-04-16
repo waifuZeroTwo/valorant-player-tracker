@@ -9,7 +9,7 @@
     font-family: 'Poppins', sans-serif;
 }
 
-@media (max-width: 375px) {
+@media (max-width: 500px) {
     .login-container {
         padding: 20px; /* Adds padding to avoid touching the edges of the screen */
     }

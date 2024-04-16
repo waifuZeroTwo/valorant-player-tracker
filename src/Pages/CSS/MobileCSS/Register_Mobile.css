@@ -1,6 +1,6 @@
 /* Register.css - Specific styles for the Register component */
 
-@media (max-width: 375px) {
+@media (max-width: 500px) {
     div {
         padding: 10px;
         margin: auto;

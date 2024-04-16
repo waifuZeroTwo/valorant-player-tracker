@@ -1,69 +1,72 @@
+/* General header styles */
 .header .menu-toggle {
-    display: none;  /* Hide by default, visible only in mobile */
+    display: none;  /* Hide menu toggle by default */
 }
 
 .header nav {
     position: fixed;
     top: 0;
-    left: -100%; /* Start off-screen to the left */
-    width: 100%;
+    left: 0; /* Ensure it starts from the left edge of the screen */
+    width: 100%; /* Full width */
     height: 100vh;
     background: #0f0f0f;
-    opacity: 0; /* Start fully transparent */
-    visibility: hidden; /* Start as not visible */
+    opacity: 0;
+    visibility: hidden;
     transition: transform 0.5s ease, opacity 0.5s ease, visibility 0.5s ease;
     z-index: 1000;
-    transform: translateX(0);
+    transform: translateX(-100%); /* Start off-screen */
 }
 
 .header nav.visible {
-    transform: translateX(100%);
-    opacity: 1; /* Fully visible */
-    visibility: visible; /* Make visible */
+    transform: translateX(0%); /* Slide in from the left */
+    opacity: 1;
+    visibility: visible;
 }
 
-@media (max-width: 375px) {
+@media (max-width: 500px) {
     .header .menu-toggle {
-        display: block;  /* Show toggle button in mobile view */
+        display: block;  /* Display menu toggle in mobile view */
     }
 
     .navigation ul {
         display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+        flex-direction: column; /* Vertical layout for mobile */
+        align-items: center; /* Center items horizontally */
+        justify-content: center; /* Center items vertically within the navigation */
         height: 100%;
     }
 
     .navigation li {
-        margin-bottom: 20px;  /* Space out the links vertically */
+        margin-bottom: 20px; /* Space out the links vertically */
     }
 }
 
 /* Desktop styles reset */
-@media (min-width: 376px) {
+@media (min-width: 501px) {
     .header .menu-toggle {
-        display: none;
+        display: none; /* Ensure toggle button is hidden on desktop */
     }
 
     .header nav {
-        position: relative;
-        width: auto;
-        height: auto;
-        background: transparent;
-        transform: none; /* Reset transformation */
-        display: flex;  /* Flex layout for desktop */
-        left: 0;  /* Reset left position */
+        position: relative; /* Use relative instead of fixed to flow with the document */
+        width: auto; /* Auto width to fit content */
+        height: auto; /* Auto height to fit content */
+        background: transparent; /* Clear background */
+        transform: none; /* No transformation */
+        display: flex; /* Flex layout for desktop navigation */
+        opacity: 1; /* Fully opaque */
+        visibility: visible; /* Always visible */
+        left: 0; /* Reset left position */
     }
 
     .navigation ul {
-        flex-direction: row;
-        align-items: center;
-        justify-content: flex-end;
-        height: auto;
+        flex-direction: row; /* Horizontal layout for desktop */
+        align-items: center; /* Align items vertically */
+        justify-content: center; /* Center items horizontally */
+        height: auto; /* Height according to content */
     }
 
     .navigation li {
-        margin: 0 10px;
+        margin: 0 10px; /* Horizontal spacing between menu items */
     }
 }

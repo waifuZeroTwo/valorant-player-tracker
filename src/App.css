@@ -4,6 +4,10 @@ body, html {
   padding: 0;
   background-color: #0f1923;
   color: #ffffff;
+  overflow-x: hidden !important; /* Prevent horizontal scrolling */
+  overflow-y: auto !important; /* Enable vertical scrolling, enforce with !important */
+  height: 100%; /* Full viewport height */
+  scroll-behavior: smooth !important; /* Smooth scrolling, enforce with !important */
 }
 
 .App {
@@ -28,4 +32,10 @@ h1, p {
   color: #fd4455;
   text-decoration: none;
   font-weight: bold;
+}
+
+@media (max-width: 500px) {
+  .home-content {
+    min-height: calc(100vh - 60px); /* Adjusted for header/footer */
+  }
 }

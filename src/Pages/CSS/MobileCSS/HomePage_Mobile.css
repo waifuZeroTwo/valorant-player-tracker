@@ -27,7 +27,7 @@ html, body {
 /* ... (other base styles) ... */
 
 /* Mobile specific styles */
-@media (max-width: 375px) {
+@media (max-width: 500px) {
     *,
     *::before,
     *::after {
@@ -127,50 +127,7 @@ html, body {
 }
 
 /* Styles for larger than mobile if needed */
-@media (min-width: 376px) {
-    *,
-    *::before,
-    *::after {
-        box-sizing: border-box;
-    }
-
-    html, body {
-        margin: 0;
-        padding: 0;
-        height: 100%;
-        overflow: hidden;
-    }
-
-    .home-content {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 20px;
-        width: 100%;
-        max-width: 800px;
-        min-height: calc(100vh - 60px);
-        margin: auto;
-        color: #fff;
-        background-color: transparent;
-        transition: all 0.3s ease;
-    }
-
-    .error-message {
-        padding: 10px;
-        background-color: #550000;
-        border-left: 5px solid #ff4545;
-        color: #ffdddd;
-        text-align: center;
-        border-radius: 4px;
-        font-size: 1rem;
-        font-weight: bold;
-        width: 80%;
-        max-width: 600px;
-        box-shadow: 0 2px 8px rgba(255, 69, 69, 0.2);
-        margin: 20px auto;
-    }
-
+@media (min-width: 501px) {
     button {
         background-color: #282c34;
         color: #ff6347;

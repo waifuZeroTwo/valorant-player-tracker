@@ -9,7 +9,7 @@
     cursor: pointer;
 }
 
-@media (max-width: 375px) {
+@media (max-width: 500px) {
     .header .menu-toggle {
         display: block; /* Show toggle button in mobile view */
     }
@@ -108,10 +108,13 @@
         font-size: 24px;
         cursor: pointer;
     }
+    .desktop-search-form {
+        display: none;
+    }
 }
 
 /* Reset and adjustments for screens wider than 375px */
-@media (min-width: 376px) {
+@media (min-width: 501px) {
     .header .menu-toggle {
         display: none; /* Hide toggle button in non-mobile view */
     }
