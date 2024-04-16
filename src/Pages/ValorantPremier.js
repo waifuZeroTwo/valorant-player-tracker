@@ -1,60 +1,48 @@
-import React from 'react';
-import './CSS/ValorantPremier.css'; // Ensure you have corresponding CSS file for styling
-
-// Dummy data for premier events
-const premierEvents = [
-    {
-        id: 1,
-        title: "VCT Masters Reykjavik",
-        date: "2024-04-23",
-        description: "The pinnacle of Valorant competitive play, held in the land of fire and ice."
-    },
-    // ... more events
-];
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import './CSS/ValorantPremier.css'; // Ensure CSS path is correct
 
 function ValorantPremier() {
-    // Handler function when an event is clicked
-    const handleEventClick = (event) => {
-        console.log("Event clicked:", event.title);
-        // Additional logic here, like redirecting to an event details page
-    };
+    const [events, setEvents] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchEvents = async () => {
+            setLoading(true);
+            try {
+                const { data } = await axios.get('https://vlrggapi.vercel.app/match/upcoming');
+                if (data.status === 200) {
+                    setEvents(data.segments);
+                } else {
+                    throw new Error('Failed to fetch data');
+                }
+            } catch (err) {
+                setError('Failed to load events');
+                console.error('API fetch error:', err);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchEvents();
+    }, []);
+
     return (
         <div className="valorant-premier-container">
             <h1>Valorant Premier Events</h1>
             <p>Stay updated with the latest Valorant premier events and tournaments!</p>
-
-            <section className="valorant-premier-scout">
-                <h2>Valorant Premier Scout</h2>
-                <p>We have full Valorant Premier Tracking, starting with the Beta! Check out all of our features to
-                    track your Valorant Premier stats, scout other teams, and achieve victory.</p>
-                {/* Additional content and functionality */}
-            </section>
-
-            <section className="valorant-premier-team-search">
-                <h2>Valorant Premier Team Search</h2>
-                <p>Use the search box to scout for your Valorant Premier team or your opponents to craft your
-                    strategy.</p>
-                {/* Search functionality */}
-            </section>
-
-            <section className="valorant-premier-schedule">
-                <h2>Valorant Premier Schedule</h2>
-                <p>Find out when the next matches are scheduled and never miss a fight!</p>
-                {/* Calendar or list of upcoming matches */}
-            </section>
-
-            <section className="valorant-premier-events">
-                <h2>Upcoming Events</h2>
-                <div className="events-list">
-                    {premierEvents.map(event => (
-                        <div key={event.id} className="event" onClick={() => handleEventClick(event)}>
-                            <h3>{event.title}</h3>
-                            <p>Date: {event.date}</p>
-                            <p>{event.description}</p>
-                        </div>
-                    ))}
-                </div>
-            </section>
+            {loading && <p>Loading events...</p>}
+            {error && <p>Error: {error}</p>}
+            <div className="events-list">
+                {events.map(event => (
+                    <div key={event.tournament_name} className="event">
+                        <h3>{event.tournament_name}</h3>
+                        <p>Date: {new Date(event.unix_timestamp * 1000).toLocaleDateString()}</p>
+                        <p>{event.round_info}</p>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 }

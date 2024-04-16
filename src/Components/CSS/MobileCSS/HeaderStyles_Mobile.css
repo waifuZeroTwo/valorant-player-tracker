@@ -6,26 +6,32 @@
 .header nav {
     position: fixed;
     top: 0;
-    left: 0; /* Ensure it starts from the left edge of the screen */
+    left: 0; /* Align to the left edge */
     width: 100%; /* Full width */
     height: 100vh;
     background: #0f0f0f;
     opacity: 0;
     visibility: hidden;
-    transition: transform 0.5s ease, opacity 0.5s ease, visibility 0.5s ease;
+    transition: transform 0.3s ease, opacity 0.3s ease-out; /* Ensure smooth transition for transform */
     z-index: 1000;
-    transform: translateX(-100%); /* Start off-screen */
+    transform: translateX(-100%); /* Start off-screen to the left */
 }
 
 .header nav.visible {
-    transform: translateX(0%); /* Slide in from the left */
+    transform: translateX(0%); /* Slide in */
     opacity: 1;
     visibility: visible;
+    transition: transform 0.3s ease, opacity 0.3s ease-in; /* Ensure smooth transition for transform and opacity */
 }
 
 @media (max-width: 500px) {
     .header .menu-toggle {
-        display: block;  /* Display menu toggle in mobile view */
+        display: block;  /* Show toggle button in mobile view */
+        cursor: pointer; /* Indicates it's clickable */
+        position: fixed; /* Ensure it's fixed to stay in place during scrolling */
+        bottom: 20px; /* Position from the bottom of the viewport */
+        right: 20px; /* Position from the right of the viewport */
+        z-index: 1001; /* Ensure it is above other content */
     }
 
     .navigation ul {
@@ -38,6 +44,7 @@
 
     .navigation li {
         margin-bottom: 20px; /* Space out the links vertically */
+        width: 100%; /* Full width links for easier touch */
     }
 }
 
@@ -48,25 +55,23 @@
     }
 
     .header nav {
-        position: relative; /* Use relative instead of fixed to flow with the document */
-        width: auto; /* Auto width to fit content */
-        height: auto; /* Auto height to fit content */
-        background: transparent; /* Clear background */
+        position: relative; /* Normal flow within the document */
+        width: auto; /* Adjust width to content */
+        height: auto; /* Adjust height to content */
+        background: transparent; /* Clear any background */
         transform: none; /* No transformation */
         display: flex; /* Flex layout for desktop navigation */
-        opacity: 1; /* Fully opaque */
+        opacity: 1; /* Fully visible */
         visibility: visible; /* Always visible */
-        left: 0; /* Reset left position */
     }
 
     .navigation ul {
-        flex-direction: row; /* Horizontal layout for desktop */
+        flex-direction: row; /* Horizontal layout */
         align-items: center; /* Align items vertically */
         justify-content: center; /* Center items horizontally */
-        height: auto; /* Height according to content */
     }
 
     .navigation li {
-        margin: 0 10px; /* Horizontal spacing between menu items */
+        margin: 0 10px; /* Horizontal spacing */
     }
 }

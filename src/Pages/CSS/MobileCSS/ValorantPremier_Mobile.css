@@ -1,0 +1,45 @@
+@media (max-width: 500px) {
+    .valorant-premier-container {
+        padding: 10px; /* Smaller padding to maximize space */
+        font-size: 14px; /* Smaller font size for better readability on small devices */
+    }
+
+    .valorant-premier-container h1,
+    .valorant-premier-container h2 {
+        font-size: 18px; /* Larger headings for emphasis but suitable for small screens */
+    }
+
+    .valorant-premier-container p {
+        font-size: 12px; /* Smaller paragraphs to fit more text on the screen */
+    }
+
+    .events-list .event {
+        padding: 8px; /* Reduced padding */
+        margin-bottom: 10px; /* Less margin to fit more content */
+        font-size: 12px; /* Smaller text within each event block */
+    }
+
+    .events-list .event:hover {
+        transform: scale(1.02); /* Subtle scale up to indicate interactivity */
+    }
+
+    .events-list .event:active {
+        transform: scale(0.98); /* Subtle scale down to simulate a press */
+    }
+
+    .overlay {
+        display: flex; /* Ensures full-screen coverage */
+        padding: 10px; /* Padding to prevent content from touching the edges */
+    }
+
+    .modal {
+        width: 90%; /* Full width to make better use of space */
+        padding: 15px; /* Sufficient padding for legibility and comfort */
+        font-size: 14px; /* Increased font size for easier reading */
+    }
+
+    .modal button {
+        width: 100%; /* Easier to tap */
+        padding: 12px; /* Larger touch area */
+    }
+}

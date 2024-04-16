@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SearchBar from './SearchBar';
-import './CSS/HeaderStyles.css';
-import './CSS/MobileCSS/HeaderStyles_Mobile.css';
+import './CSS/HeaderStyles.css';  // Ensure path is correct
+import './CSS/MobileCSS/HeaderStyles_Mobile.css';  // Ensure path is correct
 
 const Header = ({ onSearch, searchTerm, setSearchTerm }) => {
     const [isNavVisible, setIsNavVisible] = useState(false);
@@ -10,7 +10,7 @@ const Header = ({ onSearch, searchTerm, setSearchTerm }) => {
 
     const handleNavClick = (path) => {
         navigate(path);
-        setIsNavVisible(false);  // Close the navigation menu
+        setIsNavVisible(false);  // Close the menu after navigation
     };
 
     return (
@@ -20,7 +20,7 @@ const Header = ({ onSearch, searchTerm, setSearchTerm }) => {
                     Valorant Stat Tracker
                 </a>
             </div>
-            <button className="menu-toggle" onClick={() => setIsNavVisible(!isNavVisible)}>
+            <button className="menu-toggle" onClick={() => setIsNavVisible(!isNavVisible)} aria-label="Menu">
                 ☰
             </button>
             <nav className={`navigation ${isNavVisible ? 'visible' : ''}`}>
