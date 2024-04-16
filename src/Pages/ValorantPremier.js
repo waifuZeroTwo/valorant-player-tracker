@@ -4,6 +4,7 @@ import './CSS/ValorantPremier.css'; // Ensure CSS path is correct
 
 function ValorantPremier() {
     const [events, setEvents] = useState([]);
+    const [selectedEvent, setSelectedEvent] = useState(null); // State to hold the selected event
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
@@ -11,9 +12,10 @@ function ValorantPremier() {
         const fetchEvents = async () => {
             setLoading(true);
             try {
-                const { data } = await axios.get('https://vlrggapi.vercel.app/match/upcoming');
-                if (data.status === 200) {
-                    setEvents(data.segments);
+                const response = await axios.get('http://localhost:8080/https://vlrggapi.vercel.app/match/upcoming');
+                const { data } = response;
+                if (data.data.status === 200) {
+                    setEvents(data.data.segments);
                 } else {
                     throw new Error('Failed to fetch data');
                 }
@@ -28,6 +30,14 @@ function ValorantPremier() {
         fetchEvents();
     }, []);
 
+    const handleEventClick = (event) => {
+        setSelectedEvent(event); // Set the selected event for the modal
+    };
+
+    const closeModal = () => {
+        setSelectedEvent(null); // Reset the selected event to close the modal
+    };
+
     return (
         <div className="valorant-premier-container">
             <h1>Valorant Premier Events</h1>
@@ -36,13 +46,23 @@ function ValorantPremier() {
             {error && <p>Error: {error}</p>}
             <div className="events-list">
                 {events.map(event => (
-                    <div key={event.tournament_name} className="event">
+                    <div key={event.tournament_name} className="event" onClick={() => handleEventClick(event)}>
                         <h3>{event.tournament_name}</h3>
                         <p>Date: {new Date(event.unix_timestamp * 1000).toLocaleDateString()}</p>
                         <p>{event.round_info}</p>
                     </div>
                 ))}
             </div>
+            {selectedEvent && (
+                <div className="overlay">
+                    <div className="modal">
+                        <h2>{selectedEvent.tournament_name}</h2>
+                        <p>Date: {new Date(selectedEvent.unix_timestamp * 1000).toLocaleDateString()}</p>
+                        <p>Details: {selectedEvent.round_info}</p>
+                        <button onClick={closeModal}>Close</button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

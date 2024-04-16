@@ -41,13 +41,13 @@
     position: fixed;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.7); /* Dark background for the overlay */
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1000; /* Ensure it's above everything else */
+    z-index: 1000; /* Above everything else */
 }
 
 .modal {
@@ -55,10 +55,19 @@
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    width: 500px; /* Set a fixed width for the modal or make it responsive */
-    z-index: 1001; /* Above the overlay */
+    width: 80%; /* Responsive width */
+    max-width: 600px; /* Maximum width */
 }
 
 .modal button {
-    /* Style your close button here */
+    padding: 10px 20px;
+    background-color: #ff4654;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modal button:hover {
+    background-color: #c04040;
 }
