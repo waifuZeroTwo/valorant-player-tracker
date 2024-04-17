@@ -48,10 +48,17 @@ export const fetchNews = async () => {
 export const getTimeUntil = (unixTimestamp) => {
     const eventDate = new Date(unixTimestamp * 1000);
     const now = new Date();
-    const diffTime = Math.max(eventDate - now, 0);
+    const diffTime = eventDate - now; // Removing Math.max to see negative values too
+
+    console.log(`Event Date: ${eventDate}`);
+    console.log(`Current Date: ${now}`);
+    console.log(`Difference in Time (ms): ${diffTime}`);
+
     const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
     const diffHours = Math.floor((diffTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const diffMinutes = Math.floor((diffTime % (1000 * 60 * 60)) / (1000 * 60));
+
+    console.log(`Days: ${diffDays}, Hours: ${diffHours}, Minutes: ${diffMinutes}`);
 
     if (diffDays > 0) {
         return `${diffDays} days, ${diffHours} hours, ${diffMinutes} minutes`;
@@ -59,7 +66,9 @@ export const getTimeUntil = (unixTimestamp) => {
         return `${diffHours} hours, ${diffMinutes} minutes`;
     } else if (diffMinutes > 0) {
         return `${diffMinutes} minutes`;
-    } else {
+    } else if (diffTime > 0) {
         return "Starting soon!";
+    } else {
+        return "Match has started or time data is invalid";
     }
 };
