@@ -23,6 +23,7 @@ Before you begin, ensure you have the following installed:
 Clone the repository and install its dependencies to get started:
 
 ```bash
-git clone https://yourrepositorylink.com/valorant-stat-tracker.git
+git clone https://github.com/waifuZeroTwo/valorant-player-tracker.git
+git clone https://github.com/Rob--W/cors-anywhere.git
 cd valorant-stat-tracker
 npm install
