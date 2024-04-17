@@ -1,61 +1,47 @@
+// ValorantPremier.js
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import { fetchMatches, fetchLiveMatches, fetchNews } from './CombinedDataComponent';
 import './CSS/ValorantPremier.css';
 import './CSS/MobileCSS/ValorantPremier_Mobile.css';
 
 function ValorantPremier() {
-    const [currentView, setCurrentView] = useState('matches'); // Default view
+    const [currentView, setCurrentView] = useState('matches');
     const [events, setEvents] = useState([]);
     const [news, setNews] = useState([]);
+    const [liveMatches, setLiveMatches] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [selectedEvent, setSelectedEvent] = useState(null); // State to handle the selected event
 
     useEffect(() => {
-        fetchMatches();
-    }, []);
-
-    const fetchMatches = async () => {
-        setLoading(true);
-        try {
-            const response = await axios.get('http://localhost:8080/https://vlrggapi.vercel.app/match/upcoming');
-            const { data } = response;
-            if (data.data.status === 200) {
-                setEvents(data.data.segments);
-            } else {
-                throw new Error('Failed to fetch matches');
+        const loadData = async () => {
+            setLoading(true);
+            try {
+                const eventsData = await fetchMatches();
+                const liveData = await fetchLiveMatches();
+                const newsData = currentView === 'news' ? await fetchNews() : [];
+                setEvents(eventsData);
+                setLiveMatches(liveData);
+                setNews(newsData);
+                setLoading(false);
+            } catch (err) {
+                setError(err.message);
+                setLoading(false);
             }
-        } catch (err) {
-            setError('Failed to load matches');
-            console.error('API fetch error:', err);
-        } finally {
-            setLoading(false);
-        }
-    };
+        };
+        loadData();
+    }, [currentView]);
 
-    const fetchNews = async () => {
-        setLoading(true);
-        try {
-            const response = await axios.get('http://localhost:8080/https://vlrggapi.vercel.app/news');
-            const { data } = response;
-            if (data.data.status === 200) {
-                setNews(data.data.segments);
-            } else {
-                throw new Error('Failed to fetch news');
-            }
-        } catch (err) {
-            setError('Failed to load news');
-            console.error('API fetch error:', err);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    const handleNavClick = (view) => {
-        setError(null); // Reset errors on view change
+    const handleNavClick = async (view) => {
+        setError(null);
         setCurrentView(view);
         if (view === 'news' && news.length === 0) {
-            fetchNews(); // Fetch news only if it hasn't been fetched yet
+            try {
+                const newsData = await fetchNews();
+                setNews(newsData);
+            } catch (err) {
+                setError(err.message);
+            }
         }
     };
 
@@ -73,45 +59,62 @@ function ValorantPremier() {
             {loading && <p>Loading...</p>}
             {error && <p>Error: {error}</p>}
 
+            {/* Live Matches Section */}
+            {currentView === 'matches' && liveMatches.length > 0 && (
+                <div className="live-matches">
+                    <h2>Live Matches</h2>
+                    {liveMatches.map(match => (
+                        <div key={`${match.tournament_name}-live-${match.unix_timestamp}`} className="event live" onClick={() => handleEventClick(match)}>
+                            <h3>{match.tournament_name} (Live)</h3>
+                            <p>{match.team1} vs {match.team2}</p>
+                            <p>Score: {match.score1} - {match.score2}</p>
+                            <p>{match.round_info}</p>
+                        </div>
+                    ))}
+                </div>
+            )}
+
+            {/* Upcoming Matches Section */}
             {currentView === 'matches' && (
                 <div className="events-list">
-                    {events.map(event => (
-                        <div key={event.tournament_name} className="event" onClick={() => handleEventClick(event)}>
-                            <h3>{event.tournament_name}</h3>
-                            <p>Date: {new Date(event.unix_timestamp * 1000).toLocaleDateString()}</p>
-                            <p>
-                                <img src={`/src/Flags/${event.flag1}.png`} alt={`${event.team1} flag`}
-                                     style={{width: '20px', height: '20px'}}/>
-                                {event.team1} vs
-                                <img src={`/src/Flags/${event.flag2}.png`} alt={`${event.team2} flag`}
-                                     style={{width: '20px', height: '20px'}}/>
-                                {event.team2}
-                            </p>
-                            <p>Score: {event.score1} - {event.score2}</p>
-                            <p>{event.round_info}</p>
-                        </div>
-                    ))}
+                    <h2>Upcoming Matches</h2>
+                    {events.map(event => {
+                        // Convert and check the date validity
+                        const eventDate = new Date(event.unix_timestamp * 1000);
+                        const isValidDate = !isNaN(eventDate.getTime()); // getTime() returns the number of milliseconds since the UNIX epoch.
+
+                        return (
+                            <div key={`${event.tournament_name}-${event.unix_timestamp}`} className="event" onClick={() => handleEventClick(event)}>
+                                <h3>{event.tournament_name}</h3>
+                                <p>Date: {isValidDate ? eventDate.toLocaleDateString() : 'Unavailable'}</p>
+                                <p>{event.team1} vs {event.team2}</p>
+                                <p>{event.round_info}</p>
+                            </div>
+                        );
+                    })}
                 </div>
             )}
 
+            {/* News Section */}
             {currentView === 'news' && (
                 <div className="news-list">
-                    {news.map(item => (
-                        <div key={item.url_path}>
+                    {news.map((item, index) => (
+                        <div key={index} className="news-item" onClick={() => handleEventClick(item)}>
                             <h3>{item.title}</h3>
-                            <p>{item.description}</p>
-                            <p>Date: {item.date}</p>
                         </div>
                     ))}
                 </div>
             )}
 
-            {/* Optionally render the selected event in a modal or overlay */}
+            {/* News Details Overlay */}
             {selectedEvent && (
-                <div className="event-details">
-                    {/* Modal content here */}
-                    <p>{selectedEvent.round_info}</p>
-                    <button onClick={() => setSelectedEvent(null)}>Close</button>
+                <div className="event-details-overlay">
+                    <div className="event-details">
+                        <h3>{selectedEvent.title}</h3>
+                        <p>{selectedEvent.description}</p>
+                        <p>Date Published: {new Date(selectedEvent.date).toLocaleDateString()}</p>
+                        <button onClick={() => setSelectedEvent(null)}>Close</button>
+                    </div>
                 </div>
             )}
         </div>

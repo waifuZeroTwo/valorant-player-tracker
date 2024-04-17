@@ -1,64 +1,74 @@
+/* Base container for Valorant theme */
 .valorant-premier-container {
     color: #fff;
-    background-color: #0f1923; /* A dark theme similar to Valorant's UI */
+    background-color: #0f1923; /* Dark theme similar to Valorant's UI */
     padding: 20px;
     text-align: center;
     -webkit-user-select: none; /* Safari */
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* Internet Explorer/Edge */
-    user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera, and Edge */
+    user-select: none; /* Chrome, Opera, Edge */
 }
 
+/* Titles in the Valorant container */
 .valorant-premier-container h1,
 .valorant-premier-container h2 {
     color: #ff4654; /* Valorant's signature red color */
 }
 
+/* Paragraph text in the Valorant container */
 .valorant-premier-container p {
-    color: #c7d5e0; /* A lighter shade for text to ensure readability */
+    color: #c7d5e0; /* Lighter shade for readability */
 }
 
+/* Styling for event listings */
 .events-list .event {
-    background-color: #16202d; /* Slightly lighter than the page background for contrast */
+    background-color: #16202d; /* Contrast with page background */
     margin-bottom: 15px;
     padding: 10px;
-    border-left: 5px solid #ff4654; /* A stylistic choice for a splash of color */
-    transition: all 0.3s ease; /* Transition for smooth color and transform changes */
-    cursor: pointer; /* Change cursor to signify it's clickable */
+    border-left: 5px solid #ff4654; /* Splash of color */
+    transition: all 0.3s ease; /* Smooth transitions */
+    cursor: pointer; /* Clickable item style */
 }
 
+/* Hover effects for events */
 .events-list .event:hover {
-    background-color: #1c2834; /* Slightly highlight the event on hover */
-    transform: translateY(-2px); /* Move up slightly on hover */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.5); /* Shadow for 3D lift effect */
+    background-color: #1c2834; /* Highlight event */
+    transform: translateY(-2px); /* Lift effect */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5); /* 3D effect */
 }
 
+/* Active state for events */
 .events-list .event:active {
-    transform: translateY(1px); /* Move down slightly on click to simulate button press */
-    box-shadow: 0 2px 4px rgba(0,0,0,0.5); /* Reduce shadow to simulate button being pressed */
+    transform: translateY(1px); /* Button press effect */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5); /* Pressed effect */
 }
+
+/* Overlay for modal */
 .overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1000; /* Above everything else */
+    z-index: 1000; /* Above all other elements */
 }
 
+/* Modal window styling */
 .modal {
     background-color: #1a1e24;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     width: 80%; /* Responsive width */
-    max-width: 600px; /* Maximum width */
+    max-width: 600px; /* Max width */
 }
 
+/* Buttons inside the modal */
 .modal button {
     padding: 10px 20px;
     background-color: #ff4654;
@@ -68,6 +78,122 @@
     cursor: pointer;
 }
 
+/* Hover state for modal buttons */
 .modal button:hover {
-    background-color: #c04040;
+    background-color: #c04040; /* Darker red on hover */
+}
+
+/* Special styling for live matches */
+.live-matches {
+    background-color: #330000; /* Dark red background for subtlety and theme consistency */
+    color: #ffffff;
+    padding: 10px;
+    margin-top: 20px;
+    border-left: 5px solid #ff6347; /* Bright red vertical line to denote live status */
+}
+
+.live-matches .event {
+    background-color: #330000; /* Dark red background */
+    color: #ffffff;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.live-matches .event:hover {
+    transform: scale(1.02);
+    box-shadow: 0 2px 10px rgba(255, 0, 0, 0.5);
+}
+
+.live-matches .event:active {
+    transform: scale(0.98);
+}
+
+/* Styling for live event indicator */
+.event.live {
+    background-color: #1a1e24; /* Keep the dark theme */
+    border: 1px solid #ff4545; /* Subtle red border for emphasis */
+    padding: 10px;
+    margin: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    transition: transform 0.2s ease-in-out;
+}
+
+.event.live:hover {
+    transform: translateY(-3px); /* Move up slightly to mimic button press */
+    box-shadow: 0 6px 12px rgba(255, 69, 69, 0.6); /* More pronounced shadow for depth */
+}
+
+.event.live:active {
+    transform: translateY(1px); /* Mimic the button being pressed down */
+    box-shadow: 0 2px 4px rgba(255, 69, 69, 0.4); /* Less shadow to mimic depth when pressed */
+}
+
+.event-details-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1050; /* High z-index to be on top of other content */
+}
+
+/* Modal content styling, centered with padding and rounded corners */
+.event-details {
+    background-color: #1a1e24;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    width: 90%; /* Responsive width */
+    max-width: 500px; /* Maximum width */
+    z-index: 1051; /* Above the overlay */
+}
+
+.news-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.news-item {
+    background: linear-gradient(145deg, #323840, #1e2128);
+    border: 1px solid #444;
+    border-radius: 8px;
+    padding: 15px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    color: #c7d5e0; /* Soft white color for text */
+}
+
+.news-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.event-details-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.event-details {
+    background-color: #1e2128;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    z-index: 1001;
+    color: #c7d5e0;
 }
