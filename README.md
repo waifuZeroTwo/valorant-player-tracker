@@ -1,5 +1,3 @@
-Here's a revamped version of your README for the "Valorant Stat Tracker" that's designed to be engaging and user-friendly, making it easier and more enjoyable to read:
-
 ---
 
 # 🎯 Valorant Stat Tracker
