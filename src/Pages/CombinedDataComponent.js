@@ -44,3 +44,22 @@ export const fetchNews = async () => {
         throw err;
     }
 };
+
+export const getTimeUntil = (unixTimestamp) => {
+    const eventDate = new Date(unixTimestamp * 1000);
+    const now = new Date();
+    const diffTime = Math.max(eventDate - now, 0);
+    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+    const diffHours = Math.floor((diffTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const diffMinutes = Math.floor((diffTime % (1000 * 60 * 60)) / (1000 * 60));
+
+    if (diffDays > 0) {
+        return `${diffDays} days, ${diffHours} hours, ${diffMinutes} minutes`;
+    } else if (diffHours > 0) {
+        return `${diffHours} hours, ${diffMinutes} minutes`;
+    } else if (diffMinutes > 0) {
+        return `${diffMinutes} minutes`;
+    } else {
+        return "Starting soon!";
+    }
+};

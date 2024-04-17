@@ -1,6 +1,6 @@
 // ValorantPremier.js
 import React, { useEffect, useState } from 'react';
-import { fetchMatches, fetchLiveMatches, fetchNews } from './CombinedDataComponent';
+import {fetchMatches, fetchLiveMatches, fetchNews, getTimeUntil} from './CombinedDataComponent';
 import './CSS/ValorantPremier.css';
 import './CSS/MobileCSS/ValorantPremier_Mobile.css';
 
@@ -79,14 +79,12 @@ function ValorantPremier() {
                 <div className="events-list">
                     <h2>Upcoming Matches</h2>
                     {events.map(event => {
-                        // Convert and check the date validity
-                        const eventDate = new Date(event.unix_timestamp * 1000);
-                        const isValidDate = !isNaN(eventDate.getTime()); // getTime() returns the number of milliseconds since the UNIX epoch.
+                        const timeUntilMatch = getTimeUntil(event.unix_timestamp);
 
                         return (
                             <div key={`${event.tournament_name}-${event.unix_timestamp}`} className="event" onClick={() => handleEventClick(event)}>
                                 <h3>{event.tournament_name}</h3>
-                                <p>Date: {isValidDate ? eventDate.toLocaleDateString() : 'Unavailable'}</p>
+                                <p>Time until match: {timeUntilMatch}</p>
                                 <p>{event.team1} vs {event.team2}</p>
                                 <p>{event.round_info}</p>
                             </div>
