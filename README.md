@@ -25,7 +25,7 @@ Make sure you're set up with the following to get started:
 Get your own Valorant Stat Tracker running with these simple steps:
 
 ```bash
-git clone https://yourrepositorylink.com/valorant-stat-tracker.git
+git clone https://github.com/waifuZeroTwo/valorant-player-tracker.git
 cd valorant-stat-tracker
 npm install
 ```
